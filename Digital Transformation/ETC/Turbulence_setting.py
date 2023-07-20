@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
+
 def calculate_reynolds_number():
     try:
         density = float(density_entry.get())
@@ -18,7 +19,10 @@ def calculate_reynolds_number():
         # Enable the Calculate Turbulent Intensity button
         calculate_ti_button.config(state=tk.NORMAL)
     except ValueError:
-        messagebox.showerror("Input Error", "Please enter valid numeric values for Density, Velocity, Dynamic Viscosity, and Characteristic Length Scale.")
+        messagebox.showerror("Input Error",
+                             "Please enter valid numeric values for Density, Velocity, Dynamic Viscosity, "
+                             "and Characteristic Length Scale.")
+
 
 def calculate_turbulent_intensity():
     try:
@@ -27,11 +31,12 @@ def calculate_turbulent_intensity():
         # Empirical correlation for estimating turbulent intensity based on Reynolds number
         # Please note that this correlation is a simplified example and might not be accurate for all cases.
         # For real-world applications, use relevant correlations based on flow conditions and geometry.
-        turbulent_intensity = 0.16 * reynolds_number**(-(1/8))
+        turbulent_intensity = 0.16 * reynolds_number ** (-(1 / 8)) * 100
 
         turbulent_intensity_label.config(text=f"Turbulent Intensity: {turbulent_intensity:.2f}%")
     except ValueError:
         messagebox.showerror("Calculation Error", "Reynolds Number not found. Please calculate it first.")
+
 
 # Create the main application window
 app = tk.Tk()
@@ -67,7 +72,8 @@ reynolds_number_label = tk.Label(app, text="")
 reynolds_number_label.grid(row=5, columnspan=2)
 
 # Create a button to calculate turbulent intensity (disabled initially)
-calculate_ti_button = tk.Button(app, text="Calculate Turbulent Intensity", command=calculate_turbulent_intensity, state=tk.DISABLED)
+calculate_ti_button = tk.Button(app, text="Calculate Turbulent Intensity", command=calculate_turbulent_intensity,
+                                state=tk.DISABLED)
 calculate_ti_button.grid(row=6, columnspan=2)
 
 # Create a label to display the turbulent intensity result
